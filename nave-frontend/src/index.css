@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+:root {
+  --white: #fff;
+  --black: #212121;
+  --blackBorderInput: #424242;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
