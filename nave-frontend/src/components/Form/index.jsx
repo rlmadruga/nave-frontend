@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FormWrapper = styled.div`
+const FormWrapper = styled.form`
   margin: 156px auto;
   display: flex;
   width: 448px;
