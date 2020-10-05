@@ -5,10 +5,10 @@ import NavBar from "../../components/Navbar";
 
 const Wrapper = styled.div`
   margin: auto;
-  border: 3px solid #ff0000;
+
   width: 100%;
 
-  @media only screen and (min-width: 320px) and (max-width: 720px) {
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
     width: 100%;
     p,
     form {
@@ -27,7 +27,6 @@ const Header = styled.p`
   line-height: 36px;
   margin: 125px 30rem 10px;
   padding: 10px 10px 10px 85px;
-  border: 3px solid #f0ff00;
 
   i {
     padding: 10px 10px 10px 0;
@@ -55,7 +54,6 @@ const FormWrapper = styled.form`
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: flex-start;
-  border: 3px solid #ff0000;
 
   div {
     margin: 0 auto;
@@ -67,7 +65,7 @@ const FormWrapper = styled.form`
   label {
     display: block;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 18px;
     padding: 0 0 10px 0;
   }
@@ -109,7 +107,7 @@ const Create = () => {
         <Header>
           <Link to="/home">
             <i className="fa fa-chevron-left"></i>
-          </Link>{" "}
+          </Link>
           Adicionar Naver
         </Header>
         <FormWrapper>
@@ -127,7 +125,7 @@ const Create = () => {
             <label htmlFor="jobTime">Tempo de empresa</label>
             <input type="text" placeholder="Tempo de empresa" />
             <label htmlFor="image">URL da foto do Naver</label>
-            <input type="text" placeholder="URL da foto do Naver" />
+            <input type="url" placeholder="URL da foto do Naver" />
             <Button>Salvar</Button>
           </div>
         </FormWrapper>

@@ -5,7 +5,6 @@ import { removeLogout } from "../../api/auth";
 import Logo from "../../assets/img/logo.png";
 
 const Nav = styled.nav`
-  border: 1px solid var(--black);
   width: 100%;
   height: 85px;
   left: 0px;
