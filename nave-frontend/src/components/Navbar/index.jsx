@@ -26,6 +26,10 @@ const Nav = styled.nav`
     font-size: 1rem;
     line-height: 24px;
   }
+
+  @media only screen and (min-width: 480px) and (max-width: 720px) {
+    width: 100%;
+  }
 `;
 
 function NavBar() {

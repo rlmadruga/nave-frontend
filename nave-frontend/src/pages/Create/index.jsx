@@ -1,6 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import NavBar from "../../components/Navbar";
+
+const Wrapper = styled.div`
+  margin: auto;
+  border: 3px solid #ff0000;
+  width: 100%;
+
+  @media only screen and (min-width: 480px) and (max-width: 720px) {
+    width: 100%;
+  }
+`;
 
 const Header = styled.p`
   font-weight: 600;
@@ -8,6 +19,16 @@ const Header = styled.p`
   line-height: 36px;
   margin: 125px 344px 10px;
   padding: 10px 10px 10px 85px;
+  border: 3px solid #f0ff00;
+
+  a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--black);
+    font-size: 1.8rem;
+    line-height: 36px;
+    text-align: center;
+  }
 `;
 
 const FormWrapper = styled.form`
@@ -19,6 +40,7 @@ const FormWrapper = styled.form`
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: flex-start;
+  border: 3px solid #ff0000;
 
   div {
     margin: 0 auto;
@@ -38,7 +60,7 @@ const FormWrapper = styled.form`
     border: 1px solid var(--blackBorderInput);
     font-size: 16px;
     line-height: 24px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     width: 280px;
     height: 40px;
   }
@@ -68,26 +90,30 @@ const Create = () => {
   return (
     <>
       <NavBar />
-      <Header>&lt; Adicionar Naver</Header>
-      <FormWrapper>
-        <div>
-          <label htmlFor="name">Nome</label>
-          <input type="text" placeholder="Nome" />
-          <label htmlFor="age">Idade</label>
-          <input type="date" placeholder="Idade" />
-          <label htmlFor="projects">Projetos que participou</label>
-          <input type="text" placeholder="Projetos que participou" />
-        </div>
-        <div>
-          <label htmlFor="position">Cargo</label>
-          <input type="text" placeholder="Cargo" />
-          <label htmlFor="jobTime">Tempo de empresa</label>
-          <input type="text" placeholder="Tempo de empresa" />
-          <label htmlFor="image">URL da foto do Naver</label>
-          <input type="text" placeholder="URL da foto do Naver" />
-          <Button>Salvar</Button>
-        </div>
-      </FormWrapper>
+      <Wrapper>
+        <Header>
+          <Link to="/home">&lt;</Link> Adicionar Naver
+        </Header>
+        <FormWrapper>
+          <div>
+            <label htmlFor="name">Nome</label>
+            <input type="text" placeholder="Nome" />
+            <label htmlFor="age">Idade</label>
+            <input type="date" placeholder="Idade" />
+            <label htmlFor="projects">Projetos que participou</label>
+            <input type="text" placeholder="Projetos que participou" />
+          </div>
+          <div>
+            <label htmlFor="position">Cargo</label>
+            <input type="text" placeholder="Cargo" />
+            <label htmlFor="jobTime">Tempo de empresa</label>
+            <input type="text" placeholder="Tempo de empresa" />
+            <label htmlFor="image">URL da foto do Naver</label>
+            <input type="text" placeholder="URL da foto do Naver" />
+            <Button>Salvar</Button>
+          </div>
+        </FormWrapper>
+      </Wrapper>
     </>
   );
 };
