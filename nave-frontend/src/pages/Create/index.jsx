@@ -8,8 +8,16 @@ const Wrapper = styled.div`
   border: 3px solid #ff0000;
   width: 100%;
 
-  @media only screen and (min-width: 480px) and (max-width: 720px) {
+  @media only screen and (min-width: 320px) and (max-width: 720px) {
     width: 100%;
+    p,
+    form {
+      margin: auto;
+    }
+    form {
+      flex-direction: column;
+      padding-left: 5rem;
+    }
   }
 `;
 
@@ -17,13 +25,20 @@ const Header = styled.p`
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
-  margin: 125px 344px 10px;
+  margin: 125px 30rem 10px;
   padding: 10px 10px 10px 85px;
   border: 3px solid #f0ff00;
 
+  i {
+    padding: 10px 10px 10px 0;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   a {
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--black);
     font-size: 1.8rem;
     line-height: 36px;
@@ -32,7 +47,7 @@ const Header = styled.p`
 `;
 
 const FormWrapper = styled.form`
-  margin: 0px 344px;
+  margin: 0px 30rem;
   padding: 0px 20px 20px 0;
   width: 920px;
   display: flex;
@@ -92,7 +107,10 @@ const Create = () => {
       <NavBar />
       <Wrapper>
         <Header>
-          <Link to="/home">&lt;</Link> Adicionar Naver
+          <Link to="/home">
+            <i className="fa fa-chevron-left"></i>
+          </Link>{" "}
+          Adicionar Naver
         </Header>
         <FormWrapper>
           <div>
