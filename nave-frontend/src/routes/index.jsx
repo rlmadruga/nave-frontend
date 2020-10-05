@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
+import Create from "../pages/Create";
+import Update from "../pages/Update";
 import { auth } from "../api/auth";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -23,6 +25,8 @@ export default function Routes() {
       <Switch>
         <Route exact path="/" component={Login} />
         <PrivateRoute path="/home" component={Home} />
+        <PrivateRoute path="/create" component={Create} />
+        <PrivateRoute path="/update" component={Update} />
       </Switch>
     </Router>
   );

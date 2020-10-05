@@ -42,6 +42,11 @@ const Header = styled.div`
   }
 `;
 
+const Card = styled.div`
+  width: 281px;
+  height: 420px;
+`;
+
 const Home = () => {
   return (
     <>
