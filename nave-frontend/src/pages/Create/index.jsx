@@ -121,6 +121,8 @@ const Create = () => {
     setModalVisible(true);
   };
 
+  const [name, setName] = useState("");
+
   return (
     <>
       <NavBar />
@@ -134,7 +136,12 @@ const Create = () => {
         <FormWrapper>
           <div>
             <label htmlFor="name">Nome</label>
-            <input type="text" placeholder="Nome" />
+            <input
+              type="text"
+              placeholder="Nome"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
             <label htmlFor="age">Idade</label>
             <input type="date" placeholder="Idade" />
             <label htmlFor="projects">Projetos que participou</label>
@@ -153,7 +160,7 @@ const Create = () => {
       </Wrapper>
       <button onClick={handleModalVisible}>Abrir Modal</button>
       <Modal visible={modalVisible} setVisible={setModalVisible}>
-        Naver criado,Naver criado com sucesso
+        Naver criado,Naver criado com sucesso!
       </Modal>
     </>
   );

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import NavBar from "../../components/Navbar";
+import Modal from "../../components/Modal";
 
 const Wrapper = styled.div`
   margin: auto;
@@ -17,6 +18,15 @@ const Wrapper = styled.div`
     form {
       flex-direction: column;
       padding-left: 5rem;
+      height: 100%;
+      max-height: 886px;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1440px) {
+    p {
+      margin: 0 auto;
+      padding: 10px;
     }
   }
 `;
@@ -25,8 +35,9 @@ const Header = styled.p`
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
-  margin: 125px 30rem 10px;
-  padding: 10px 10px 10px 85px;
+  margin: 125px 35rem 10px;
+  padding: 10px 10px 10px 4.5rem;
+  width: 592px;
 
   i {
     padding: 10px 10px 10px 0;
@@ -46,9 +57,12 @@ const Header = styled.p`
 `;
 
 const FormWrapper = styled.form`
-  margin: 0px 30rem;
-  padding: 0px 20px 20px 0;
-  width: 920px;
+  margin: 0px auto;
+
+  /* padding: 0px 20px 20px 0; */
+  /* width: 920px; */
+  width: 592px;
+  height: 390px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -56,8 +70,8 @@ const FormWrapper = styled.form`
   align-items: flex-start;
 
   div {
-    margin: 0 auto;
-    padding: 0px 10px 10px 10px;
+    /* margin: 0 auto; */
+    /* padding: 0px 10px 10px 10px; */
     display: flex;
     flex-direction: column;
   }
@@ -69,6 +83,7 @@ const FormWrapper = styled.form`
     line-height: 18px;
     padding: 0 0 10px 0;
   }
+
   input {
     border: 1px solid var(--blackBorderInput);
     font-size: 16px;
@@ -100,6 +115,12 @@ const Button = styled.button`
 `;
 
 const Update = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleModalVisible = () => {
+    setModalVisible(true);
+  };
+
   return (
     <>
       <NavBar />
@@ -130,6 +151,10 @@ const Update = () => {
           </div>
         </FormWrapper>
       </Wrapper>
+      <button onClick={handleModalVisible}>Abrir Modal</button>
+      <Modal visible={modalVisible} setVisible={setModalVisible}>
+        Naver atualizado,Naver atualizado com sucesso!
+      </Modal>
     </>
   );
 };

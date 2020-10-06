@@ -1,7 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import NavBar from "../../components/Navbar";
+import API from "../../api/api";
 
 const Header = styled.div`
   border: 1px solid var(--black);
@@ -48,6 +49,31 @@ const Card = styled.div`
 `;
 
 const Home = () => {
+  const [navers, setNavers] = useState([]);
+  const [id, setID] = useState("");
+  const [load, setLoad] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let isMounted = true;
+    API.get("navers")
+      .then((res) => {
+        if (isMounted) {
+          setNavers(res.data);
+          setID([...id, ...res.data]);
+          setLoad(true);
+        }
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoad(true);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id]);
+
   return (
     <>
       <NavBar />
@@ -57,6 +83,28 @@ const Home = () => {
           <button>Adicionar Naver</button>
         </Link>
       </Header>
+      {load ? (
+        <ul>
+          {error ? (
+            <li>{error.message}</li>
+          ) : (
+            navers.map((navers) => {
+              return (
+                <div key={navers.id}>
+                  <img width="281" height="281" src={navers.url} alt="" />{" "}
+                  <p>{navers.name}</p> <p>{navers.job_role}</p>{" "}
+                  <i className="fas fa-trash"></i>{" "}
+                  <Link to={`/update/${navers.id}`}>
+                    <i className="fas fa-pen"></i>
+                  </Link>
+                </div>
+              );
+            })
+          )}
+        </ul>
+      ) : (
+        <div> Loading... </div>
+      )}
     </>
   );
 };
