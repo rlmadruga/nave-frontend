@@ -14,7 +14,7 @@ const ModalMain = styled.div`
   position: fixed;
   background: var(--white);
   width: 592px;
-  height: 160px;
+  height: ${(props) => (props.buttons === true ? "233px" : "160px")};
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -74,7 +74,7 @@ const Modal = (props) => {
     <>
       {props.visible && (
         <ModalWrapper>
-          <ModalMain>
+          <ModalMain buttons={props.buttons}>
             <div>
               <ModalText>{fix[0]}</ModalText>
               <i className="fas fa-times" onClick={handleModalWrapper}></i>

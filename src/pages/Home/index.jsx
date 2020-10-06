@@ -84,8 +84,9 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
 
-  button:selected {
+  button:focus {
     border: none;
+    outline: none;
   }
 `;
 
