@@ -74,6 +74,15 @@ const Home = () => {
     };
   }, [id]);
 
+  async function deleteNavers(id) {
+    try {
+      await API.delete(`navers/${id}`);
+      setNavers(navers.filter((navers) => navers.id !== id));
+    } catch {
+      alert("Erro ao Deletar, tente novamente!");
+    }
+  }
+
   return (
     <>
       <NavBar />
@@ -91,9 +100,11 @@ const Home = () => {
             navers.map((navers) => {
               return (
                 <div key={navers.id}>
-                  <img width="281" height="281" src={navers.url} alt="" />{" "}
-                  <p>{navers.name}</p> <p>{navers.job_role}</p>{" "}
-                  <i className="fas fa-trash"></i>{" "}
+                  <img width="281" height="281" src={navers.url} alt="" />
+                  <p>{navers.name}</p> <p>{navers.job_role}</p>
+                  <button onClick={() => deleteNavers(navers.id)}>
+                    <i className="fas fa-trash"></i>
+                  </button>
                   <Link to={`/update/${navers.id}`}>
                     <i className="fas fa-pen"></i>
                   </Link>

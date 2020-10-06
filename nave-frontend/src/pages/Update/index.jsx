@@ -114,7 +114,7 @@ const Button = styled.button`
   align-self: flex-end;
 `;
 
-const Update = () => {
+const Update = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleModalVisible = () => {
