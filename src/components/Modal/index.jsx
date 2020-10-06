@@ -29,6 +29,7 @@ const ModalMain = styled.div`
 
   i {
     margin: 29px 29px 0 0;
+    cursor: pointer;
   }
 `;
 
@@ -81,8 +82,10 @@ const Modal = (props) => {
             <ModalSubText>{fix[1]}</ModalSubText>
             {props.buttons && (
               <div>
-                <ModalButton>Cancelar</ModalButton>
-                <ModalButton>Excluir</ModalButton>
+                <ModalButton onClick={handleModalWrapper}>Cancelar</ModalButton>
+                <ModalButton onClick={() => props.deleteNavers(props.id)}>
+                  Excluir
+                </ModalButton>
               </div>
             )}
           </ModalMain>

@@ -83,12 +83,18 @@ const Wrapper = styled.div`
     border: none;
     cursor: pointer;
   }
+
+  button:selected {
+    border: none;
+  }
 `;
 
 const Home = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [idModal, setIdModal] = useState("");
 
-  const handleModalVisible = () => {
+  const handleModalVisible = (id) => {
+    setIdModal(id);
     setModalVisible(true);
   };
 
@@ -121,6 +127,7 @@ const Home = () => {
     try {
       await API.delete(`navers/${id}`);
       setNavers(navers.filter((navers) => navers.id !== id));
+      handleModalVisible(id);
     } catch {
       alert("Erro ao Deletar, tente novamente!");
     }
@@ -147,7 +154,7 @@ const Home = () => {
                     <img width="281" height="281" src={navers.url} alt="" />
                     <p className="title">{navers.name}</p>{" "}
                     <p className="subtitle">{navers.job_role}</p>
-                    <button onClick={() => deleteNavers(navers.id)}>
+                    <button onClick={() => handleModalVisible(navers.id)}>
                       <i className="fas fa-trash"></i>
                     </button>
                     <Link to={`/update/${navers.id}`}>
@@ -168,7 +175,13 @@ const Home = () => {
         </div>
       )}
 
-      <Modal visible={modalVisible} setVisible={setModalVisible} buttons={true}>
+      <Modal
+        visible={modalVisible}
+        setVisible={setModalVisible}
+        buttons={true}
+        deleteNavers={deleteNavers}
+        id={idModal}
+      >
         Excluir Naver,Tem certeza que deseja excluir este Naver?
       </Modal>
     </>
