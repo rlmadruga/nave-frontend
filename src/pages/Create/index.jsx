@@ -159,6 +159,7 @@ const Create = () => {
     try {
       await API.post("navers", naver);
       handleModalVisible();
+      history.push("/home");
     } catch (e) {
       setLoading(false);
       setError(true);

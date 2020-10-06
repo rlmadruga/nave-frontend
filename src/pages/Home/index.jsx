@@ -5,7 +5,6 @@ import NavBar from "../../components/Navbar";
 import API from "../../api/api";
 
 const Header = styled.div`
-  border: 1px solid var(--black);
   width: 100%;
   height: 85px;
   left: 0px;
@@ -47,7 +46,7 @@ const Wrapper = styled.div`
   display: inline-block;
 
   div {
-    margin: 32px;
+    margin: 32px 32px 0;
     width: 281px;
     height: 376px;
   }
@@ -98,7 +97,7 @@ const Home = () => {
         </Link>
       </Header>
       {load ? (
-        <ul>
+        <ul style={{ paddingInlineStart: "0px" }}>
           {error ? (
             <li>{error.message}</li>
           ) : (
@@ -107,7 +106,8 @@ const Home = () => {
                 <Wrapper key={navers.id}>
                   <div key={navers.id}>
                     <img width="281" height="281" src={navers.url} alt="" />
-                    <p>{navers.name}</p> <p>{navers.job_role}</p>
+                    <p className="title">{navers.name}</p>{" "}
+                    <p className="subtitle">{navers.job_role}</p>
                     <button onClick={() => deleteNavers(navers.id)}>
                       <i className="fas fa-trash"></i>
                     </button>
