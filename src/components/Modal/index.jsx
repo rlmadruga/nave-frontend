@@ -54,11 +54,11 @@ const Modal = (props) => {
   return (
     <>
       {props.visible && (
-        <ModalWrapper onClick={handleModalWrapper}>
+        <ModalWrapper>
           <ModalMain>
             <div>
               <ModalText>{fix[0]}</ModalText>
-              <i className="fas fa-times"></i>
+              <i className="fas fa-times" onClick={handleModalWrapper}></i>
             </div>
             <ModalSubText>{fix[1]}</ModalSubText>
           </ModalMain>

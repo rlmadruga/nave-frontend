@@ -43,9 +43,14 @@ const Header = styled.div`
   }
 `;
 
-const Card = styled.div`
-  width: 281px;
-  height: 420px;
+const Wrapper = styled.div`
+  display: inline-block;
+
+  div {
+    margin: 32px;
+    width: 281px;
+    height: 376px;
+  }
 `;
 
 const Home = () => {
@@ -99,16 +104,18 @@ const Home = () => {
           ) : (
             navers.map((navers) => {
               return (
-                <div key={navers.id}>
-                  <img width="281" height="281" src={navers.url} alt="" />
-                  <p>{navers.name}</p> <p>{navers.job_role}</p>
-                  <button onClick={() => deleteNavers(navers.id)}>
-                    <i className="fas fa-trash"></i>
-                  </button>
-                  <Link to={`/update/${navers.id}`}>
-                    <i className="fas fa-pen"></i>
-                  </Link>
-                </div>
+                <Wrapper key={navers.id}>
+                  <div key={navers.id}>
+                    <img width="281" height="281" src={navers.url} alt="" />
+                    <p>{navers.name}</p> <p>{navers.job_role}</p>
+                    <button onClick={() => deleteNavers(navers.id)}>
+                      <i className="fas fa-trash"></i>
+                    </button>
+                    <Link to={`/update/${navers.id}`}>
+                      <i className="fas fa-pen"></i>
+                    </Link>
+                  </div>
+                </Wrapper>
               );
             })
           )}
