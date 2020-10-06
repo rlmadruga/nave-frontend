@@ -98,6 +98,10 @@ const Home = () => {
     setModalVisible(true);
   };
 
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   const [navers, setNavers] = useState([]);
   const [id, setID] = useState("");
   const [load, setLoad] = useState(false);
@@ -127,7 +131,7 @@ const Home = () => {
     try {
       await API.delete(`navers/${id}`);
       setNavers(navers.filter((navers) => navers.id !== id));
-      handleModalVisible(id);
+      closeModal();
     } catch {
       alert("Erro ao Deletar, tente novamente!");
     }
