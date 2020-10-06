@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
+import Modal from "../../components/Modal";
 import NavBar from "../../components/Navbar";
 import API from "../../api/api";
 
@@ -46,13 +47,51 @@ const Wrapper = styled.div`
   display: inline-block;
 
   div {
-    margin: 32px 32px 0;
+    margin: 2rem 32px 0;
+    margin-bottom: 3rem;
     width: 281px;
     height: 376px;
+    text-align: left;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 18px;
+    color: var(--black);
+    margin-bottom: 5px;
+    border: 1px solid #00ff00;
+  }
+  .subtitle {
+    border: 1px solid #ff0000;
+    font-size: 1rem;
+    line-height: 24px;
+    margin-top: 0;
+  }
+
+  a {
+    background-color: transparent;
+    color: var(--black);
+  }
+
+  i {
+    margin-right: 16px;
+  }
+
+  button {
+    background-color: var(--white);
+    border: none;
+    cursor: pointer;
   }
 `;
 
 const Home = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleModalVisible = () => {
+    setModalVisible(true);
+  };
+
   const [navers, setNavers] = useState([]);
   const [id, setID] = useState("");
   const [load, setLoad] = useState(false);
@@ -97,7 +136,7 @@ const Home = () => {
         </Link>
       </Header>
       {load ? (
-        <ul style={{ paddingInlineStart: "0px" }}>
+        <ul style={{ paddingInlineStart: "0px", textAlign: "center" }}>
           {error ? (
             <li>{error.message}</li>
           ) : (
@@ -121,8 +160,17 @@ const Home = () => {
           )}
         </ul>
       ) : (
-        <div> Loading... </div>
+        <div>
+          <i
+            style={{ marginLeft: "2rem", fontSize: "5rem" }}
+            className="fas fa-spinner"
+          ></i>
+        </div>
       )}
+
+      <Modal visible={modalVisible} setVisible={setModalVisible} buttons={true}>
+        Excluir Naver,Tem certeza que deseja excluir este Naver?
+      </Modal>
     </>
   );
 };

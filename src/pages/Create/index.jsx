@@ -238,7 +238,7 @@ const Create = () => {
         {error && <p>Ops! Ocorreu um erro, verifique se todos os dados estão corretos</p>}
       </Wrapper>
       {/* <button onClick={handleModalVisible}>Abrir Modal</button> */}
-      <Modal visible={modalVisible} setVisible={setModalVisible}>
+      <Modal visible={modalVisible} setVisible={setModalVisible} buttons={false}>
         Naver criado,Naver criado com sucesso!
       </Modal>
     </>

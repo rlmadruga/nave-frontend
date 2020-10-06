@@ -45,6 +45,24 @@ const ModalSubText = styled(ModalText)`
   margin: 24px 0px 32px 32px;
 `;
 
+const ModalButton = styled.button`
+  width: 10rem;
+  background-color: var(--black);
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  padding: 8px 16px 8px 16px;
+  transition: 0.2s;
+  &:hover {
+    transition: 0.2s;
+    background-color: var(--white);
+    color: var(--black);
+  }
+`;
+
 const Modal = (props) => {
   let fix = props.children.split(",");
 
@@ -61,6 +79,12 @@ const Modal = (props) => {
               <i className="fas fa-times" onClick={handleModalWrapper}></i>
             </div>
             <ModalSubText>{fix[1]}</ModalSubText>
+            {props.buttons && (
+              <div>
+                <ModalButton>Cancelar</ModalButton>
+                <ModalButton>Excluir</ModalButton>
+              </div>
+            )}
           </ModalMain>
         </ModalWrapper>
       )}
