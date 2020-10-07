@@ -81,6 +81,7 @@ const Wrapper = styled.div`
 
   img {
     cursor: pointer;
+    object-fit: cover;
   }
 
   button {
@@ -102,6 +103,8 @@ const Home = () => {
   const [cardVisible, setCardVisible] = useState(false);
   const [idCard, setIdCard] = useState("");
 
+  const [modalVisibleDelete, SetModalDelete] = useState(false);
+
   const handleCardVisible = (id) => {
     setIdCard(id);
     setCardVisible(true);
@@ -110,6 +113,10 @@ const Home = () => {
   const handleModalVisible = (id) => {
     setIdModal(id);
     setModalVisible(true);
+  };
+
+  const handleModalDelete = () => {
+    SetModalDelete(true);
   };
 
   const closeModal = () => {
@@ -146,6 +153,8 @@ const Home = () => {
       await API.delete(`navers/${id}`);
       setNavers(navers.filter((navers) => navers.id !== id));
       closeModal();
+      handleModalDelete();
+      setTimeout(() => window.location.reload(), 1500);
     } catch {
       alert("Erro ao Deletar, tente novamente!");
     }
@@ -174,7 +183,7 @@ const Home = () => {
                       width="281"
                       height="281"
                       src={navers.url}
-                      alt=""
+                      alt={`${navers.name} Foto`}
                     />
 
                     <p className="title">{navers.name}</p>
@@ -211,6 +220,10 @@ const Home = () => {
         id={idModal}
       >
         Excluir Naver,Tem certeza que deseja excluir este Naver?
+      </Modal>
+
+      <Modal visible={modalVisibleDelete} setVisible={SetModalDelete} buttons={false}>
+        Naver excluído,Naver excluído com sucesso!
       </Modal>
 
       {cardVisible && (

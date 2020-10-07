@@ -176,7 +176,7 @@ const Create = () => {
     try {
       await API.post("navers", naver);
       handleModalVisible();
-      history.push("/home");
+      setTimeout(() => history.push("/home"), 3000);
     } catch (e) {
       setLoading(false);
       setError(true);
@@ -264,7 +264,7 @@ const Create = () => {
           <p style={{ textAlign: "center", color: "#FF0000" }}>{errorURLText}</p>
         )}
       </Wrapper>
-      {/* <button onClick={handleModalVisible}>Abrir Modal</button> */}
+
       <Modal visible={modalVisible} setVisible={setModalVisible} buttons={false}>
         Naver criado,Naver criado com sucesso!
       </Modal>

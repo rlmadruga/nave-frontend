@@ -169,7 +169,7 @@ const Update = ({ match }) => {
     try {
       await API.put(`navers/${match.params.id}`, naver);
       handleModalVisible();
-      history.push("/home");
+      setTimeout(() => history.push("/home"), 1500);
     } catch (e) {
       setLoading(false);
       setError(true);
@@ -248,8 +248,8 @@ const Update = ({ match }) => {
         </FormWrapper>
         {error && <p>Ops! Ocorreu um erro, verifique se todos os dados estão corretos</p>}
       </Wrapper>
-      {/* <button onClick={handleModalVisible}>Abrir Modal</button> */}
-      <Modal visible={modalVisible} setVisible={setModalVisible}>
+
+      <Modal visible={modalVisible} setVisible={setModalVisible} buttons={false}>
         Naver atualizado,Naver atualizado com sucesso!
       </Modal>
     </>
