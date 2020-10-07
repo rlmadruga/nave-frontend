@@ -197,7 +197,7 @@ const Home = () => {
       ) : (
         <div>
           <i
-            style={{ marginLeft: "2rem", fontSize: "4rem" }}
+            style={{ position: "absolute", top: "50%", left: "50%", fontSize: "5rem" }}
             className="fas fa-spinner"
           ></i>
         </div>

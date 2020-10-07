@@ -220,6 +220,7 @@ const Update = ({ match }) => {
               type="text"
               placeholder="Cargo"
               required
+              minLength="3"
               value={job_role}
               onChange={(e) => setJob(e.target.value)}
             />

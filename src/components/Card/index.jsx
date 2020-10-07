@@ -49,6 +49,12 @@ const CardContainer = styled.div`
   .fa-pen {
     position: relative;
     left: 0;
+    margin-top: 76px;
+    margin-right: 16px;
+  }
+
+  a {
+    color: var(--black);
   }
 `;
 
@@ -64,6 +70,7 @@ const CardSubTitle = styled.h5`
   line-height: 1.5rem;
   font-weight: 400;
   margin-bottom: 24px;
+  margin-top: 0px;
 `;
 
 const CardText = styled.h5`
@@ -76,6 +83,7 @@ const CardText = styled.h5`
 const CardSubText = styled(CardText)`
   font-weight: 400;
   margin-bottom: 24px;
+  margin-top: 0px;
 `;
 
 const Card = ({ id, ...props }) => {
@@ -85,11 +93,12 @@ const Card = ({ id, ...props }) => {
   const [birthdate, setBirthdate] = useState("");
   const [project, setProject] = useState("");
   const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function requestApi() {
       const response = await API.get(`navers/${id}`);
-
+      setLoading(true);
       let age = response.data.birthdate.split("T");
       let ageYear = age[0].split("-");
       let today = new Date().toISOString().slice(0, 10).split("-");
@@ -124,7 +133,7 @@ const Card = ({ id, ...props }) => {
 
   return (
     <>
-      {props.visible && (
+      {props.visible && loading && (
         <CardWrapper>
           <CardMain>
             <CardImage>

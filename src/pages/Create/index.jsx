@@ -121,6 +121,28 @@ const Create = () => {
 
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorURL, setErrorURL] = useState(false);
+  const [errorURLText, setErrorURLText] = useState("");
+
+  const checkURL = (url) => {
+    if (!(url === "")) {
+      let string = url;
+      let regex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/;
+      if (regex.test(string)) {
+        setUrl(string);
+      } else {
+        setErrorURL(true);
+        setErrorURLText("A URL não é uma imagem! Verifique o link colocado.");
+        setUrl("");
+      }
+    }
+  };
+
+  const handleURlError = () => {
+    if (url === "") {
+      setErrorURLText("");
+    }
+  };
 
   const [name, setName] = useState("");
   const [job_role, setJob] = useState("");
@@ -205,6 +227,7 @@ const Create = () => {
               type="text"
               placeholder="Cargo"
               required
+              minLength="3"
               value={job_role}
               onChange={(e) => setJob(e.target.value)}
             />
@@ -223,6 +246,8 @@ const Create = () => {
               type="url"
               placeholder="URL da foto do Naver"
               required
+              onFocus={() => handleURlError()}
+              onBlur={() => checkURL(url)}
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
@@ -230,7 +255,14 @@ const Create = () => {
             <Button type="submit">{loading ? "Loading" : "Salvar"}</Button>
           </div>
         </FormWrapper>
-        {error && <p>Ops! Ocorreu um erro, verifique se todos os dados estão corretos</p>}
+        {error && (
+          <p style={{ textAlign: "center", color: "#FF0000" }}>
+            Ocorreu um erro, verifique se todos os dados estão corretos!
+          </p>
+        )}
+        {errorURL && (
+          <p style={{ textAlign: "center", color: "#FF0000" }}>{errorURLText}</p>
+        )}
       </Wrapper>
       {/* <button onClick={handleModalVisible}>Abrir Modal</button> */}
       <Modal visible={modalVisible} setVisible={setModalVisible} buttons={false}>
