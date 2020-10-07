@@ -79,6 +79,10 @@ const Wrapper = styled.div`
     margin-right: 16px;
   }
 
+  img {
+    cursor: pointer;
+  }
+
   button {
     background-color: var(--white);
     border: none;
@@ -97,12 +101,6 @@ const Home = () => {
 
   const [cardVisible, setCardVisible] = useState(false);
   const [idCard, setIdCard] = useState("");
-  // const [name, setNameCard] = useState("");
-  // const [job_role, setJobCard] = useState("");
-  // const [admission_date, setAdmissionCard] = useState("");
-  // const [birthdate, setBirthdateCard] = useState("");
-  // const [project, setProjectCard] = useState("");
-  // const [url, setUrlCard] = useState("");
 
   const handleCardVisible = (id) => {
     setIdCard(id);
@@ -171,13 +169,19 @@ const Home = () => {
               return (
                 <Wrapper key={navers.id}>
                   <div>
-                    <img width="281" height="281" src={navers.url} alt="" />
+                    <img
+                      onClick={() => handleCardVisible(navers.id)}
+                      width="281"
+                      height="281"
+                      src={navers.url}
+                      alt=""
+                    />
 
                     <p className="title">{navers.name}</p>
                     <p className="subtitle">{navers.job_role}</p>
-                    <button onClick={() => handleCardVisible(navers.id)}>
+                    {/* <button onClick={() => handleCardVisible(navers.id)}>
                       <i className="far fa-plus-square"></i>
-                    </button>
+                    </button> */}
                     <button onClick={() => handleModalVisible(navers.id)}>
                       <i className="fas fa-trash"></i>
                     </button>
@@ -193,7 +197,7 @@ const Home = () => {
       ) : (
         <div>
           <i
-            style={{ marginLeft: "2rem", fontSize: "5rem" }}
+            style={{ marginLeft: "2rem", fontSize: "4rem" }}
             className="fas fa-spinner"
           ></i>
         </div>

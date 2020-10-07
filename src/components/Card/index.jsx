@@ -98,7 +98,15 @@ const Card = ({ id, ...props }) => {
       let admission = response.data.admission_date.split("T");
       let adYear = admission[0].split("-");
       let today2 = new Date().toISOString().slice(0, 10).split("-");
-      let resultAd = today2[0] - adYear[0];
+      let resultAd = 0;
+
+      if (today2[0] === adYear[0] && today2[1] === adYear[1]) {
+        resultAd = today2[2] - adYear[2] + " dias";
+      } else if (today2[0] === adYear[0]) {
+        resultAd = today2[1] - adYear[1] + " meses";
+      } else {
+        resultAd = today2[0] - adYear[0] + " anos";
+      }
 
       setName(response.data.name);
       setJob(response.data.job_role);
