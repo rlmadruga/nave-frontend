@@ -59,9 +59,6 @@ const Header = styled.p`
 
 const FormWrapper = styled.form`
   margin: 0px auto;
-
-  /* padding: 0px 20px 20px 0; */
-  /* width: 920px; */
   width: 592px;
   height: 390px;
   display: flex;
@@ -71,8 +68,6 @@ const FormWrapper = styled.form`
   align-items: flex-start;
 
   div {
-    /* margin: 0 auto; */
-    /* padding: 0px 10px 10px 10px; */
     display: flex;
     flex-direction: column;
   }

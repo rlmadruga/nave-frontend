@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "../../components/Modal";
 import NavBar from "../../components/Navbar";
+import Card from "../../components/Card";
 import API from "../../api/api";
 
 const Header = styled.div`
@@ -94,6 +95,20 @@ const Home = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [idModal, setIdModal] = useState("");
 
+  const [cardVisible, setCardVisible] = useState(false);
+  const [idCard, setIdCard] = useState("");
+  // const [name, setNameCard] = useState("");
+  // const [job_role, setJobCard] = useState("");
+  // const [admission_date, setAdmissionCard] = useState("");
+  // const [birthdate, setBirthdateCard] = useState("");
+  // const [project, setProjectCard] = useState("");
+  // const [url, setUrlCard] = useState("");
+
+  const handleCardVisible = (id) => {
+    setIdCard(id);
+    setCardVisible(true);
+  };
+
   const handleModalVisible = (id) => {
     setIdModal(id);
     setModalVisible(true);
@@ -155,10 +170,14 @@ const Home = () => {
             navers.map((navers) => {
               return (
                 <Wrapper key={navers.id}>
-                  <div key={navers.id}>
+                  <div>
                     <img width="281" height="281" src={navers.url} alt="" />
-                    <p className="title">{navers.name}</p>{" "}
+
+                    <p className="title">{navers.name}</p>
                     <p className="subtitle">{navers.job_role}</p>
+                    <button onClick={() => handleCardVisible(navers.id)}>
+                      <i className="far fa-plus-square"></i>
+                    </button>
                     <button onClick={() => handleModalVisible(navers.id)}>
                       <i className="fas fa-trash"></i>
                     </button>
@@ -189,6 +208,15 @@ const Home = () => {
       >
         Excluir Naver,Tem certeza que deseja excluir este Naver?
       </Modal>
+
+      {cardVisible && (
+        <Card
+          visible={cardVisible}
+          setVisible={setCardVisible}
+          deleteNavers={deleteNavers}
+          id={idCard}
+        />
+      )}
     </>
   );
 };
