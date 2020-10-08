@@ -144,7 +144,7 @@ const Home = () => {
     return () => {
       isMounted = false;
     };
-  }, [id]);
+  }, []);
 
   async function deleteNavers(id) {
     try {
