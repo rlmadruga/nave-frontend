@@ -36,15 +36,12 @@ const Header = styled.p`
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
-  margin: 125px 35rem 10px;
-  padding: 10px 10px 10px 4.5rem;
+  margin: 125px auto 10px;
+  padding: 10px 10px 10px 10px;
   width: 592px;
 
   i {
     padding: 10px 10px 10px 0;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   a {
@@ -54,6 +51,10 @@ const Header = styled.p`
     font-size: 1.8rem;
     line-height: 36px;
     text-align: center;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 

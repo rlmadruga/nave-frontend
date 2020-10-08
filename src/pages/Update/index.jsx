@@ -36,15 +36,12 @@ const Header = styled.p`
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
-  margin: 125px 35rem 10px;
-  padding: 10px 10px 10px 4.5rem;
+  margin: 125px auto 10px;
+  padding: 10px 10px 10px 10px;
   width: 592px;
 
   i {
     padding: 10px 10px 10px 0;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   a {
@@ -54,6 +51,10 @@ const Header = styled.p`
     font-size: 1.8rem;
     line-height: 36px;
     text-align: center;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -120,6 +121,29 @@ const Update = ({ match }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  const [errorURL, setErrorURL] = useState(false);
+  const [errorURLText, setErrorURLText] = useState("");
+
+  const checkURL = (url) => {
+    if (!(url === "")) {
+      let string = url;
+      let regex = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/;
+      if (regex.test(string)) {
+        setUrl(string);
+      } else {
+        setErrorURL(true);
+        setErrorURLText("A URL não é uma imagem! Verifique o link colocado.");
+        setUrl("");
+      }
+    }
+  };
+
+  const handleURlError = () => {
+    if (url === "") {
+      setErrorURLText("");
+    }
+  };
 
   const [name, setName] = useState("");
   const [job_role, setJob] = useState("");
@@ -239,6 +263,8 @@ const Update = ({ match }) => {
               type="url"
               placeholder="URL da foto do Naver"
               required
+              onFocus={() => handleURlError()}
+              onBlur={() => checkURL(url)}
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
@@ -246,7 +272,14 @@ const Update = ({ match }) => {
             <Button type="submit">{loading ? "Loading" : "Salvar"}</Button>
           </div>
         </FormWrapper>
-        {error && <p>Ops! Ocorreu um erro, verifique se todos os dados estão corretos</p>}
+        {error && (
+          <p style={{ textAlign: "center", color: "#FF0000" }}>
+            Ocorreu um erro, verifique se todos os dados estão corretos!
+          </p>
+        )}
+        {errorURL && (
+          <p style={{ textAlign: "center", color: "#FF0000" }}>{errorURLText}</p>
+        )}
       </Wrapper>
 
       <Modal visible={modalVisible} setVisible={setModalVisible} buttons={false}>
