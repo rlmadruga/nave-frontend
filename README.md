@@ -11,14 +11,27 @@ React | Hooks | API | axios | styled-components
 
 ## Para rodar localmente:
 
-Faça o download do projeto, abra o terminal na pasta e coloque os seguintes comandos:
+Faça o download do projeto, ou clone:
+
+```
+git clone https://github.com/rlmadruga/nave-frontend.git
+```
+
+<br/>Abra o terminal na pasta e execute o seguinte comando:
 
 ```
 npm install
+```
+
+<br/><strong>Renomeie</strong> o arquivo .env.example para .env
+
+<br/>E por fim, execute no terminal:
+
+```
 npm start
 ```
 
-Na tela de <strong>Login</strong>, use os dados abaixo:
+<br/>Na tela de <strong>Login</strong>, use os dados abaixo:
 
 ```
 login: testing@test.com
