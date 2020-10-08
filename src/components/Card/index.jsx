@@ -15,21 +15,32 @@ const CardWrapper = styled.div`
 const CardMain = styled.div`
   position: fixed;
   background: var(--white);
-  width: 1006px;
-  height: 503px;
+  width: 50vw; /*1006px */
+  height: auto; /*503px */
+  min-width: 500px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
 
 const CardImage = styled.div`
-  width: 50%;
-  height: 100%;
+  width: auto; /*50%*/
+  height: 503px; /**100% */
   float: left;
+  min-width: 250px;
+  box-sizing: border-box;
+
+  img {
+    width: 25vw;
+    min-width: 250px;
+    height: 503px;
+    object-fit: cover;
+  }
 `;
 
 const CardContainer = styled.div`
   width: 50%;
+  height: 503px;
   float: right;
   padding: 32px 21px 27px 30px;
 
@@ -55,6 +66,13 @@ const CardContainer = styled.div`
 
   a {
     color: var(--black);
+  }
+
+  @media only screen and (max-width: 1141px) {
+    .fa-trash,
+    .fa-pen {
+      margin-top: 49px !important;
+    }
   }
 `;
 
@@ -102,7 +120,7 @@ const Card = ({ id, ...props }) => {
       let age = response.data.birthdate.split("T");
       let ageYear = age[0].split("-");
       let today = new Date().toISOString().slice(0, 10).split("-");
-      let resultAge = today[0] - ageYear[0];
+      let resultAge = today[0] - ageYear[0] + " anos";
 
       let admission = response.data.admission_date.split("T");
       let adYear = admission[0].split("-");
@@ -137,11 +155,7 @@ const Card = ({ id, ...props }) => {
         <CardWrapper>
           <CardMain>
             <CardImage>
-              <img
-                style={{ width: "503px", height: "503px" }}
-                src={url}
-                alt="Navers Pic"
-              />
+              <img src={url} alt="Navers Pic" />
             </CardImage>
             <CardContainer>
               <i className="fas fa-times" onClick={handleCardWrapper}></i>
@@ -153,7 +167,7 @@ const Card = ({ id, ...props }) => {
               <CardSubText>{admission_date}</CardSubText>
               <CardText>Projetos que participou</CardText>
               <CardSubText>{project}</CardSubText>
-              <i className="fas fa-trash"></i>
+              <i className="fas fa-trash" onClick={() => props.handleModalVisible(id)}></i>
               <Link to={`/update/${id}`}>
                 <i className="fas fa-pen"></i>
               </Link>

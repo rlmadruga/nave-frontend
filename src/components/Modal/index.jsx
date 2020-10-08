@@ -8,6 +8,7 @@ const ModalWrapper = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 `;
 
 const ModalMain = styled.div`
@@ -31,6 +32,10 @@ const ModalMain = styled.div`
     margin: 29px 29px 0 0;
     cursor: pointer;
   }
+
+  .buttonDiv {
+    justify-content: flex-end;
+  }
 `;
 
 const ModalText = styled.p`
@@ -46,17 +51,29 @@ const ModalSubText = styled(ModalText)`
   margin: 24px 0px 32px 32px;
 `;
 
-const ModalButton = styled.button`
+const CancelBtn = styled.button`
   width: 10rem;
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--white);
+  color: var(--black);
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
   line-height: 24px;
   text-align: center;
+  margin-right: 24px;
   padding: 8px 16px 8px 16px;
   transition: 0.2s;
+  &:hover {
+    transition: 0.2s;
+    background-color: var(--black);
+    color: var(--white);
+  }
+`;
+
+const DeleteBtn = styled(CancelBtn)`
+  background-color: var(--black);
+  color: var(--white);
+  margin-right: 32px;
   &:hover {
     transition: 0.2s;
     background-color: var(--white);
@@ -81,11 +98,9 @@ const Modal = (props) => {
             </div>
             <ModalSubText>{fix[1]}</ModalSubText>
             {props.buttons && (
-              <div>
-                <ModalButton onClick={handleModalWrapper}>Cancelar</ModalButton>
-                <ModalButton onClick={() => props.deleteNavers(props.id)}>
-                  Excluir
-                </ModalButton>
+              <div className="buttonDiv">
+                <CancelBtn onClick={handleModalWrapper}>Cancelar</CancelBtn>
+                <DeleteBtn onClick={() => props.deleteNavers(props.id)}>Excluir</DeleteBtn>
               </div>
             )}
           </ModalMain>

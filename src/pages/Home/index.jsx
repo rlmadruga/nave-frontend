@@ -61,10 +61,8 @@ const Wrapper = styled.div`
     line-height: 18px;
     color: var(--black);
     margin-bottom: 5px;
-    border: 1px solid #00ff00;
   }
   .subtitle {
-    border: 1px solid #ff0000;
     font-size: 1rem;
     line-height: 24px;
     margin-top: 0;
@@ -188,9 +186,6 @@ const Home = () => {
 
                     <p className="title">{navers.name}</p>
                     <p className="subtitle">{navers.job_role}</p>
-                    {/* <button onClick={() => handleCardVisible(navers.id)}>
-                      <i className="far fa-plus-square"></i>
-                    </button> */}
                     <button onClick={() => handleModalVisible(navers.id)}>
                       <i className="fas fa-trash"></i>
                     </button>
@@ -230,8 +225,8 @@ const Home = () => {
         <Card
           visible={cardVisible}
           setVisible={setCardVisible}
-          deleteNavers={deleteNavers}
           id={idCard}
+          handleModalVisible={handleModalVisible}
         />
       )}
     </>
